@@ -24,7 +24,7 @@ const Account = () => {
   };
 
   if (!user) {
-    return <LoginToContinue/>;
+    return <LoginToContinue />;
   }
   return (
     <div className="vh-100 d-flex justify-content-center align-items-center">
@@ -43,11 +43,12 @@ const Account = () => {
           </div>
 
           <div className="d-flex justify-content-around mt-5">
-            <MDBBtn size="sm" color="dark">
+            <MDBBtn
+              size="sm"
+              color="dark"
+              onClick={() => navigate("/order-history")}
+            >
               Order History
-            </MDBBtn>
-            <MDBBtn size="sm" color="warning">
-              Pending payments
             </MDBBtn>
           </div>
         </MDBCol>

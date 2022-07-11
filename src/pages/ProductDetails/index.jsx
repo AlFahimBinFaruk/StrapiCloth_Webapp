@@ -46,7 +46,7 @@ const ProductDetails = () => {
     if (selectedColor === "None" || selectedSize === "None") {
       setShowAlert({ msg: "provide all info", color: "success" });
     } else {
-      addToCart(id, selectedColor, selectedSize, thumbnail.data.attributes.url);
+      addToCart(id,title,price, selectedColor, selectedSize, thumbnail.data.attributes.url);
     }
   };
 

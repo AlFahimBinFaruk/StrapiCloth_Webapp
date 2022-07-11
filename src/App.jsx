@@ -12,8 +12,7 @@ import Register from "./pages/Authentication/Register";
 import Account from "./pages/Authentication/Account";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout.jsx";
-import PendingPayments from "./pages/PendingPayments";
+import Checkout from "./pages/Checkout";
 import OrderDetails from "./pages/OrderDetails";
 import OrderHistory from "./pages/OrderHistory";
 import PageNotFound from "./pages/Error/PageNotFound";
@@ -36,8 +35,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order-history" element={<OrderHistory />} />
-            <Route path="/pending-payments" element={<PendingPayments />} />
-            <Route path="/order-details" element={<OrderDetails />} />
+            <Route path="/order-details/:orderId" element={<OrderDetails />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

@@ -23,9 +23,9 @@ const AppCartInfoProvider = ({ children }) => {
    * add new item
    *
    */
-  const addNewItem = (id, color, size, thumb) => {
+  const addNewItem = (id, title, price, color, size, thumb) => {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let newItem = { id, qty: 1, color, size, thumb };
+    let newItem = { id, title, price, qty: 1, color, size, thumb };
     cartItems.push(newItem);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     getCartItemDetails();
@@ -35,12 +35,12 @@ const AppCartInfoProvider = ({ children }) => {
    *
    * update item and handleIncreaseQty
    */
-  const handleIncreaseQty = async (item) => {
+  const handleIncreaseQty = async (id) => {
     // item had id and qty props
     let cartItems = JSON.parse(localStorage.getItem("cartItems"));
     let updatedCart = await cartItems.map((i) => {
-      if (i.id == item.id) {
-        return { ...item, qty: Number(item.qty) + 1 };
+      if (i.id === id) {
+        return { ...i, qty: Number(i.qty) + 1 };
       }
       return i;
     });
@@ -52,12 +52,12 @@ const AppCartInfoProvider = ({ children }) => {
    *
    * Handle decrease qty
    */
-  const handleDecreaseQty = async (item) => {
+  const handleDecreaseQty = async (id) => {
     // item had id and qty props
     let cartItems = JSON.parse(localStorage.getItem("cartItems"));
     let updatedCart = await cartItems.map((i) => {
-      if (i.id == item.id && item.qty > 1) {
-        return { ...item, qty: Number(item.qty) - 1 };
+      if (i.id === id && i.qty > 1) {
+        return { ...i, qty: Number(i.qty) - 1 };
       }
       return i;
     });
@@ -70,20 +70,20 @@ const AppCartInfoProvider = ({ children }) => {
    * if item is already in the cart it will be updated by qty
    * or the item will be added
    */
-  const addToCart = async (id, color, size, thumb) => {
+  const addToCart = async (id, title, price, color, size, thumb) => {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     if (cartItems.length > 0) {
       let isExits = await cartItems.find((item) => {
-        if (item.id == id) {
-          handleIncreaseQty(item);
+        if (item.id === id) {
+          setShowAlert({ msg: "item already exits to cart", color: "primary" });
           return true;
         }
       });
       if (!isExits) {
-        addNewItem(id, color, size, thumb);
+        addNewItem(id, title, price, color, size, thumb);
       }
     } else {
-      addNewItem(id, color, size, thumb);
+      addNewItem(id, title, price, color, size, thumb);
     }
   };
 
