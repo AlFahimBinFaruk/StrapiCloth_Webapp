@@ -17,7 +17,7 @@ export const placeNewOrder = createAsyncThunk(
   async (orderData, thunkAPI) => {
     try {
       //get the token for user ..
-      const token = thunkAPI.getState().user.user.token;
+      const token = thunkAPI.getState().user.user.jwt;
       return await orderService.placeNewOrder(orderData, token);
     } catch (error) {
       const orderMessage =
@@ -39,7 +39,7 @@ export const getMyOrderList = createAsyncThunk(
     try {
       let userId = data.userId;
       //get the token for user ..
-      const token = thunkAPI.getState().user.user.token;
+      const token = thunkAPI.getState().user.user.jwt;
       return await orderService.getMyOrderList(userId, token);
     } catch (error) {
       const orderMessage =
@@ -61,7 +61,7 @@ export const getMyOrderDetails = createAsyncThunk(
     try {
       let orderId = data.orderId;
       //get the token for user ..
-      const token = thunkAPI.getState().user.user.token;
+      const token = thunkAPI.getState().user.user.jwt;
       return await orderService.getMyOrderDetails(orderId, token);
     } catch (error) {
       const orderMessage =
@@ -83,7 +83,7 @@ export const cancelMyOrder = createAsyncThunk(
     try {
       let orderId = data.orderId;
       //get the token for user ..
-      const token = thunkAPI.getState().user.user.token;
+      const token = thunkAPI.getState().user.user.jwt;
       return await orderService.cancelMyOrder(orderId, token);
     } catch (error) {
       const orderMessage =

@@ -14,12 +14,13 @@ import {
 //header css
 import "../styles/header.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 //header component
 const Header = () => {
   //show nav
   const [showNav, setShowNav] = useState(false);
-  //see if user is logged in
-  const [login, setLogin] = useState(true);
+  //get initial state from auth store
+  const { user } = useSelector((state) => state.user);
   return (
     <MDBNavbar expand="lg" light bgColor="light">
       <MDBContainer>
@@ -50,7 +51,7 @@ const Header = () => {
             <Link to="/shop">
               <p>Shop</p>
             </Link>
-            {login ? (
+            {user ? (
               <>
                 <Link to="/account">
                   <p>Account</p>
@@ -68,9 +69,14 @@ const Header = () => {
                 </Link>
               </>
             ) : (
-              <Link to="/auth/login">
-                <p>Login</p>
-              </Link>
+              <>
+                <Link to="/login">
+                  <p>Login</p>
+                </Link>
+                <Link to="/register">
+                  <p>Register</p>
+                </Link>
+              </>
             )}
           </MDBNavbarNav>
         </MDBCollapse>
