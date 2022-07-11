@@ -18,6 +18,9 @@ const CheckoutForm = () => {
           size="sm"
         />
         <MDBTextArea label="Address" id="textAreaExample" rows={4} size="sm" />
+        <h6 className="text-muted mt-3">
+          Payment type:<span className="text-dark ms-1">COD</span>
+        </h6>
       </div>
     </div>
   );
