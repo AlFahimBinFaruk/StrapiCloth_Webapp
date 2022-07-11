@@ -7,17 +7,20 @@ import reportWebVitals from "./reportWebVitals";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./index.css";
 import { AppAlertProvider } from "./contexts/alertContext";
+import { AppCartInfoProvider } from "./contexts/cartContext";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <AppAlertProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </AppAlertProvider>
+    <Provider store={store}>
+      <AppAlertProvider>
+        <AppCartInfoProvider>
+          <App />
+        </AppCartInfoProvider>
+      </AppAlertProvider>
+    </Provider>
   </React.StrictMode>
 );
 

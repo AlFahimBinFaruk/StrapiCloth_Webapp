@@ -12,7 +12,7 @@ const getProductList = async (categoryId) => {
 
 //getProductDetails
 const getProductDetails = async (productId) => {
-  const response = await axios.get(`${API_URL}/:${productId}?populate=*`);
+  const response = await axios.get(`${API_URL}/${productId}?populate=*`);
   return response.data;
 };
 

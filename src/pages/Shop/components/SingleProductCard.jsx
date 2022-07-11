@@ -1,30 +1,48 @@
 import { MDBCard, MDBCardBody, MDBCardImage } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
+import ColorCircle from "../../../common_components/ColorCircle";
+import SizeBox from "../../../common_components/SizeBox";
 
-const SingleProductCard = () => {
+const SingleProductCard = ({
+  id,
+  title,
+  price,
+  thumbnail,
+  availQty,
+  color,
+  size,
+}) => {
+  // naviatete
+  let navigate=useNavigate()
+  //color arr
+  let colorArr = color.split(",");
+  //size arr
+  let sizeArr = size.split(",");
   return (
-    <MDBCard className="h-100 shadow" role="button">
+    <MDBCard className="h-100 shadow" role="button" onClick={()=>navigate(`/details/${id}`)}>
       <MDBCardImage
-        src="https://th.bing.com/th/id/OIP.upXSw_OaQJI_waZbQi2UhgHaHZ?w=187&h=185&c=7&r=0&o=5&pid=1.7"
+        src={thumbnail.data.attributes.url}
         alt="..."
         position="top"
       />
       <MDBCardBody>
         <div className="product-detils">
-          <h5 className="product-name text-dark">Black Hoodie</h5>
-          <h6 className="product-price fw-bold">$256</h6>
+          <h5 className="product-name text-dark">{title}</h5>
+          <h6 className="product-price fw-bold">${price}</h6>
           <p className="stock-left text-danger">
-            <small>Only 564 left</small>
+            <small>Only {availQty} left</small>
           </p>
           <p className="available-sizes">
-            <span className="me-1 text-uppercase border py-1 px-2">s</span>
-            <span className="me-1 text-uppercase border py-1 px-2">m</span>
-            <span className="me-1 text-uppercase border py-1 px-2">lg</span>
-            <span className="me-1 text-uppercase border py-1 px-2">xl</span>
+            {sizeArr &&
+              sizeArr.map((i) => {
+                return <SizeBox size={i} />;
+              })}
           </p>
           <p className="available-colors">
-            <span className="me-2 rounded-circle bg-danger px-2 border border-1 border-dark" />
-            <span className="me-2 rounded-circle bg-dark px-2 border border-1 border-dark" />
-            <span className="me-2 rounded-circle bg-warning px-2 border border-1 border-dark" />
+            {colorArr &&
+              colorArr.map((i) => {
+                return <ColorCircle color={i} />;
+              })}
           </p>
         </div>
       </MDBCardBody>

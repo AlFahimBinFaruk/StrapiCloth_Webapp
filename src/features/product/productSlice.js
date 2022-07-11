@@ -14,9 +14,8 @@ const initialState = {
 //get product list
 export const getProductList = createAsyncThunk(
   "product/getProductList",
-  async (data, thunkAPI) => {
+  async (categoryId, thunkAPI) => {
     try {
-      let categoryId = data.categoryId;
       return await productService.getProductList(categoryId);
     } catch (error) {
       const productMessage =
@@ -34,9 +33,8 @@ export const getProductList = createAsyncThunk(
 //get product details
 export const getProductDetails = createAsyncThunk(
   "product/getProductDetails",
-  async (data, thunkAPI) => {
+  async (productId, thunkAPI) => {
     try {
-      let productId = data.productId;
       return await productService.getProductDetails(productId);
     } catch (error) {
       const productMessage =
